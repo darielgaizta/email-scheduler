@@ -1,0 +1,58 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Django stuff
+*.sqlite3
+*.log
+
+# Environment variables file (optional — you might want to exclude if passing via --env-file)
+.env
+
+# Byte-compiled / optimized / DLL files
+*.so
+*.egg-info/
+.eggs/
+
+# Distribution / packaging
+build/
+dist/
+*.egg
+*.tar.gz
+*.whl
+
+# Test / coverage reports
+htmlcov/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# IDE/editor configs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
+
+# Docker files (optional, if you don’t want to include your Dockerfile or docker-compose)
+Dockerfile
+docker-compose.yml
+
+# MacOS system files
+.DS_Store
+
+# Logs
+*.log

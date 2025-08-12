@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='save_email.css') }}">
+    <title>Save Emails</title>
+</head>
+<body>
+    <header>
+        <h1>Save Emails</h1>
+        <p>Simple web application which main fcuntion is to store an email for a particular group of recipients and send it automatically at a specified time.</p>
+    </header>
+    <main>
+        <form method="post">
+            {{ form.hidden_tag() }}
+
+            <label for="event_id">{{ form.event_id.label }}</label>
+            {{ form.event_id(id="event_id") }}
+            {% for error in form.event_id.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+
+            <label for="subject">{{ form.subject.label }}</label>
+            {{ form.subject(id="subject") }}
+            {% for error in form.subject.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+
+            <label for="content">{{ form.content.label }}</label>
+            {{ form.content(id="content") }}
+            {% for error in form.content.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+
+            <label for="timestamp">{{ form.timestamp.label }}</label>
+            {{ form.timestamp(id="timestamp") }}
+            <small>Format: DD MMM YYYY HH:mm (e.g., 15 Dec 2025 23:50)</small>
+            {% for error in form.timestamp.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+
+            <input type="hidden" id="utc_timestamp" name="utc_timestamp">
+
+            <label for="recipients">{{ form.recipients.label }}</label>
+            {{ form.recipients(id="recipients") }}
+            <small>Separate multiple emails with a semicolon (e.g., user1@example.com; user2@example.com)</small>
+            {% for error in form.recipients.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+
+            <div class="submit-btn">
+                <input type="submit" value="Send Email">
+            </div>
+        </form>
+    </main>
+</body>
+<script>
+    document.querySelector('form').addEventListener('submit', function (e) {
+        const localValue = document.getElementById('timestamp').value;
+        if (localValue) {
+            const localDate = new Date(localValue);
+            document.getElementById('utc_timestamp').value = localDate.toISOString();
+        }
+    });
+</script>
+</html>
